@@ -1,0 +1,60 @@
+.game {
+    display: flex;
+    flex-direction: column;
+    max-width: 263px;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
+    background: rgb(50, 56, 62);
+}
+
+.game__belowContainer {
+    padding: 20px 20px 17px;
+}
+
+.game__image {
+
+}
+
+.game__title {
+    color: rgb(170, 170, 170);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 23px;
+}
+
+.game__description {
+    color: rgb(122, 130, 136);
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.game__gender {
+    color: rgb(39, 43, 48);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 11px;
+    border-radius: 4px;
+    background: rgb(122, 130, 136);
+    padding: 2px 4px;
+}
+
+.game__freeText {
+    color: rgb(255, 255, 255);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 11px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgb(71, 153, 235);
+}
+
+.game__platform {
+
+}
+
+.game__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

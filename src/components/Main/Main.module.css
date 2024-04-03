@@ -1,0 +1,42 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: 1425px;
+    padding: 5px 155px;
+}
+
+.main__aboveContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 30px;
+}
+
+.main__text {
+    color: rgb(170, 170, 170);
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+/*.main__clearFilter {*/
+/*    color: rgb(122, 130, 136);*/
+/*    font-size: 11px;*/
+/*    font-weight: 400;*/
+/*    line-height: 18px;*/
+/*    cursor: pointer; !* Если это интерактивный элемент *!*/
+/*    display: inline-flex; !* Для выравнивания иконки и текста *!*/
+/*    align-items: center; !* Центрирование элементов по вертикали *!*/
+/*}*/
+
+/*.main__clearFilter::before {*/
+/*    content: "";*/
+/*    background-image: url("../../../public/drop_filter_button.svg"); !* Убедитесь, что путь корректный *!*/
+/*    background-size: cover; !* Или 'contain' в зависимости от необходимости *!*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    width: 16px; !* Размер иконки *!*/
+/*    height: 16px; !* Размер иконки *!*/
+/*    display: inline-block; !* Чтобы применить размеры и позволить использование margin *!*/
+/*    margin-right: 8px; !* Отступ между иконкой и текстом *!*/
+/*}*/
