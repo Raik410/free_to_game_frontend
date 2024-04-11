@@ -3,29 +3,27 @@ import { Checkbox } from "antd";
 // import type { CheckboxProps } from "antd";
 import styles from "./Checkbox.module.css";
 import { useAppDispatch } from "../../app/hooks.ts";
-import {
-  fetchGames,
-  setPlatformFilter,
-} from "../../features/games/gamesSlice.ts";
+import { setPlatformsFilter } from "../../features/games/gamesSlice.ts";
+import { CheckboxChangeEvent } from "antd/es/checkbox/Checkbox";
 
 interface CheckboxComponentProps {
   name: string;
+  value: string;
 }
 
-const CheckboxComponent: React.FC<CheckboxComponentProps> = ({ name }) => {
+const CheckboxComponent: React.FC<CheckboxComponentProps> = ({
+  name,
+  value,
+}) => {
   const dispatch = useAppDispatch();
 
-  const handlePlatformChange = (platform: string) => {
-    dispatch(setPlatformFilter(platform));
-    void dispatch(fetchGames(platform));
+  const handlePlatformChange = (e: CheckboxChangeEvent) => {
+    const {checked} = e.target;
+    dispatch(setPlatformsFilter(value));
   };
 
   return (
-    <Checkbox
-      onChange={(e) => {
-        if (e.target.checked) handlePlatformChange(name);
-      }}
-    >
+    <Checkbox value={value} onChange={handlePlatformChange}>
       <p className={styles.text}>{name}</p>
     </Checkbox>
   );

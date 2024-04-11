@@ -1,25 +1,32 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { options } from "../../api/api.ts";
-import { IGame, GamesState } from "./types.ts";
+import { IGame, GamesState, FilterGame } from "./types.ts";
+import qs from "qs";
 
 const initialState: GamesState = {
   games: [],
   status: "idle",
   filter: {
-    platform: "all",
+    platforms: [], // pc, browser
     category: "",
   },
 };
 
-interface IFetchGames {
-  platform: string;
-  category: string;
-}
-
-export const fetchGames = createAsyncThunk<IGame[], string>(
+export const fetchGames = createAsyncThunk<IGame[], FilterGame>(
   "games/fetchGames",
-  async (platform: string) => {
-    const url = `https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=${platform}`;
+  async (gamesFilter: FilterGame) => {
+    const { platforms } = gamesFilter;
+
+    const queryParams = qs.stringify(
+      {
+        platform: platforms.length === 1 ? platforms[0] : "all",
+      },
+      {
+        encodeValuesOnly: true,
+      },
+    ) as string;
+
+    const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?${queryParams}`;
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -32,8 +39,17 @@ const gamesSlice = createSlice({
   name: "games",
   initialState,
   reducers: {
-    setPlatformFilter(state: GamesState, action: PayloadAction<string>) {
-      state.filter.platform = action.payload;
+    setPlatformsFilter(state: GamesState, action: PayloadAction<string>) {
+      const { platforms } = state.filter;
+      let newPlatforms: string[];
+
+      if (platforms.includes(action.payload)) {
+        newPlatforms = platforms.filter(
+          (platform) => platform !== action.payload,
+        );
+      } else newPlatforms = [...platforms, action.payload];
+
+      state.filter.platforms = newPlatforms;
     },
   },
   extraReducers: (builder) => {
@@ -51,5 +67,5 @@ const gamesSlice = createSlice({
   },
 });
 
-export const { setPlatformFilter } = gamesSlice.actions;
+export const { setPlatformsFilter } = gamesSlice.actions;
 export default gamesSlice.reducer;

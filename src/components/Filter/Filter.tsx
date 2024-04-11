@@ -1,25 +1,30 @@
 import styles from "./Filter.module.css";
-import { FC } from "react";
 import CheckboxComponent from "../Checkbox/Checkbox.tsx";
 
-interface FilterProps {
-  title?: string;
-  subtitle: string;
-  texts?: string[];
-  select: boolean;
+interface OptionType {
+  value: string;
+  title: string;
 }
-const Filter: FC<FilterProps> = ({ title, subtitle, select, texts }) => {
+
+interface FilterProps {
+  renderValue?: string;
+  subtitle: string;
+  options: OptionType[];
+}
+
+const Filter = ({ renderValue, subtitle, options }: FilterProps) => {
   return (
     <div className={styles.filter}>
-      {select ? (
+      {renderValue?.length ? (
         <div className={styles.filter__aboveContainer}>
-          <h4 className={styles.filter__title}>{title}</h4>
+          <h4 className={styles.filter__title}>{renderValue}</h4>
         </div>
       ) : null}
       <div className={styles.filter__belowContainer}>
         <p className={styles.filter__subtitle}>{subtitle}</p>
-        {texts &&
-          texts.map((text) => <CheckboxComponent key={text} name={text} />)}
+        {options.map(({ value, title }) => (
+          <CheckboxComponent key={value} value={value} name={title} />
+        ))}
       </div>
     </div>
   );

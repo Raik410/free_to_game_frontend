@@ -7,17 +7,16 @@ import { GamesState } from "../../features/games/types.ts";
 
 const Games = () => {
   const dispatch = useAppDispatch();
-  const platformFilter = useAppSelector((state: { games: GamesState }) => {
-    return state.games.filter.platform;
+  const gamesFilter = useAppSelector((state: { games: GamesState }) => {
+    return state.games.filter;
   });
   const games = useAppSelector((state) => state.games.games);
   const status = useAppSelector((state) => state.games.status);
 
   useEffect(() => {
-    if (platformFilter != null) {
-      void dispatch(fetchGames(platformFilter));
-    }
-  }, [dispatch, platformFilter]);
+    console.log(gamesFilter);
+    void dispatch(fetchGames(gamesFilter));
+  }, [gamesFilter]);
 
   if (status === "loading") return <div>Loading...</div>;
   if (status === "failed") return <div>Failed</div>;

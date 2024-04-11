@@ -1,17 +1,25 @@
 import styles from "./Filters.module.css";
 import Filter from "../Filter/Filter.tsx";
 
-const platformSelect = ["pc", "browser"];
+const optionsPlatformSelect = [
+  {
+    value: "pc",
+    title: "pc",
+  },
+  {
+    value: "browser",
+    title: "browser",
+  }
+];
 const Filters = () => {
   return (
     <section className={styles.filters}>
       <Filter
-        title="Sorted By:"
+        renderValue="Sorted By:"
         subtitle="Platform"
-        select={true}
-        texts={platformSelect}
+        options={optionsPlatformSelect}
       />
-      {/*<Filter title="Filter Type:" subtitle="Genre" select={true} />*/}
+      {/* <Filter renderValue="Filter Type:" subtitle="Genre" /> */}
       {/*<Filter subtitle="Graphics" select={false} />*/}
       {/*<Filter subtitle="Platform" select={false} />*/}
       {/*<Filter subtitle="Combat" select={false} />*/}
