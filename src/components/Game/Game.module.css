@@ -5,6 +5,7 @@
     border-radius: 4px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
     background: rgb(50, 56, 62);
+    overflow: hidden;
 }
 
 .game__belowContainer {

@@ -1,45 +1,41 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { url, options } from "../../api/api.ts";
-
-export interface Game {
-  id: number;
-  title: string;
-  short_description: string;
-  platform: string;
-  genre: string;
-  thumbnail: string;
-  game_url?: string;
-  publisher?: string;
-  developer?: string;
-  release_date?: string;
-  freetogame_profile_url?: string;
-}
-
-interface GamesState {
-  games: Game[];
-  status: "idle" | "loading" | "failed";
-}
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { options } from "../../api/api.ts";
+import { IGame, GamesState } from "./types.ts";
 
 const initialState: GamesState = {
   games: [],
   status: "idle",
+  filter: {
+    platform: "all",
+    category: "",
+  },
 };
 
-export const fetchGames = createAsyncThunk<Game[]>(
+interface IFetchGames {
+  platform: string;
+  category: string;
+}
+
+export const fetchGames = createAsyncThunk<IGame[], string>(
   "games/fetchGames",
-  async () => {
+  async (platform: string) => {
+    const url = `https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=${platform}`;
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return (await response.json()) as Promise<Game[]>;
+    return (await response.json()) as Promise<IGame[]>;
   },
 );
 
 const gamesSlice = createSlice({
   name: "games",
   initialState,
-  reducers: {},
+  reducers: {
+    setPlatformFilter(state: GamesState, action: PayloadAction<string>) {
+      state.filter.platform = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGames.pending, (state) => {
@@ -55,4 +51,5 @@ const gamesSlice = createSlice({
   },
 });
 
+export const { setPlatformFilter } = gamesSlice.actions;
 export default gamesSlice.reducer;

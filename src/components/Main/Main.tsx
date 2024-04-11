@@ -1,5 +1,6 @@
 import styles from "./Main.module.css";
 import Games from "../Games/Games.tsx";
+import Filters from "../Filters/Filters.tsx";
 
 const Main = () => {
   return (
@@ -10,7 +11,10 @@ const Main = () => {
         </h3>
         <p className={styles.main__clearFilter}>Clear Filters</p>
       </div>
-      <Games />
+      <div className={styles.main__box}>
+        <Filters />
+        <Games />
+      </div>
     </main>
   );
 };

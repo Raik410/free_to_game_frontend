@@ -1,15 +1,14 @@
 import styles from "./Game.module.css";
 // import image from "../../../public/fall_guys_image.png";
 import platformSvg from "../../../public/windows_logo.svg";
-import type { Game } from "../../features/games/gamesSlice.ts";
+import { IGame } from "../../features/games/types.ts";
 import { FC } from "react";
 
 interface GameProps {
-  game: Game;
+  game: IGame;
 }
 
 const Game: FC<GameProps> = ({ game }) => {
-  console.log(game);
   return (
     <li className={styles.game}>
       <img className={styles.game__image} src={game.thumbnail} alt="game" />

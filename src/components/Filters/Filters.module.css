@@ -1,0 +1,8 @@
+.filters {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    column-gap: 20px;
+    flex-grow: 1;
+    max-width: 265px;
+}

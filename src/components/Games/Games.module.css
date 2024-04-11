@@ -1,7 +1,6 @@
 .games {
     display: grid;
     justify-items: center;
-    align-items: center;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
     row-gap: 24px;

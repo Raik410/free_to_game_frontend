@@ -1,5 +1,5 @@
 export const url =
-  "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc";
+  "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp";
 export const options = {
   method: "GET",
   headers: {
