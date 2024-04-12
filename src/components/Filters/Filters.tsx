@@ -9,8 +9,20 @@ const optionsPlatformSelect = [
   {
     value: "browser",
     title: "browser",
-  }
+  },
 ];
+
+const optionsCategorySelect = [
+  {
+    value: "shooter",
+    title: "shooter",
+  },
+  {
+    value: "pvp",
+    title: "pvp",
+  },
+];
+
 const Filters = () => {
   return (
     <section className={styles.filters}>
@@ -19,7 +31,11 @@ const Filters = () => {
         subtitle="Platform"
         options={optionsPlatformSelect}
       />
-      {/* <Filter renderValue="Filter Type:" subtitle="Genre" /> */}
+      <Filter
+        renderValue="Filter Type:"
+        subtitle="Genre"
+        options={optionsCategorySelect}
+      />
       {/*<Filter subtitle="Graphics" select={false} />*/}
       {/*<Filter subtitle="Platform" select={false} />*/}
       {/*<Filter subtitle="Combat" select={false} />*/}

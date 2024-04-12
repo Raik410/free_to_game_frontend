@@ -20,5 +20,5 @@ export interface GamesState {
 
 export type FilterGame = {
   platforms: string[];
-  category?: string;
+  categorys: string[];
 };
